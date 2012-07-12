@@ -1,0 +1,35 @@
+/* custom css and js files included at the top level of your presentation will
+ * will be included in your presentation */
+
+img {
+    max-height: 40%;
+}
+
+.bigimage img {
+    width: 70%;
+}
+
+code {
+    font-size: .8em;
+}
+
+.commandline code {
+    font-size: 1em;
+}
+
+.slide ol {
+    position: relative;
+    width: 80%;
+    left: 10%;
+}
+
+.content ul li {
+}
+
+.content ul ul li {
+    margin-bottom: .8em;
+}
+
+.title-slide h1 {
+  color: #221111;
+}

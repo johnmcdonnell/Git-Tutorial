@@ -1,0 +1,15 @@
+{
+  "name": "Git: A Tutorial",
+  "description": "A brief tutorial on using git to produce and collaborate on scientific work.",
+  "author": "John V. McDonnell",
+  "templates" : {
+      "special" : "simple.tpl"
+  },
+  "pause_msg": "Paused !!!",
+  "sections": [
+    {"section":"01-intro"},
+    {"section":"02-github"},
+    {"section":"03-branching"},
+    {"section":"04-signoff"}
+  ]
+}
