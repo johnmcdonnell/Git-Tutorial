@@ -35,7 +35,7 @@
 ## Making changes and sending them back.
 
     $ cd /myclone
-    $ echo "Changes to our file, in the clone." > myfile.txt
+    $ echo "Changes to our file, in the clone." >> myfile.txt
     [master 1d5dd39] Changes in the clone.
      1 file changed, 1 insertion(+)
 
