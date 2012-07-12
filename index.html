@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Git: A Tutorial</title>
+
+  <meta name="viewport" content="width=device-width"/>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+  <script type="text/javascript" src="./js/coffee-script.js"></script>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
+
+  
+    <link rel="stylesheet" href="file/johnpres.css" type="text/css"/>
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content title-slide" ref="01-intro/01-intro/1">
+<p class="notes">first slide</p>
+
+<h1>Git for Scientists</h1>
+
+<p><img src="./file/01-intro/../images/octocat.png" alt="octocat"/></p>
+
+<p>Presented by John McDonnell<br/>
+July 12, 2012</p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="01-intro/01-intro/2">
+<p class="notes">These are some notes.</p>
+
+<h1>Why do I care about git?</h1>
+
+<ol>
+<li>Backups</li>
+<li>Collaboration</li>
+<li>Organization</li>
+</ol>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="01-intro/01-intro/3">
+<h1>What is git?</h1>
+
+<ul>
+<li>Git is a version control system.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="01-intro/01-intro/4">
+<h1>What is git?</h1>
+
+<p><img src="./file/01-intro/../images/threecommits.png" alt="threecommits"/></p>
+
+<ul>
+<li>It stores snapshots of your projects.</li>
+<li>...It also stores the relationships between those snapshots.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="01-intro/01-intro/5">
+<h1>Let's try.</h1>
+
+<pre><code><code class="command">$ mkdir /tmp/myfirstrepo</code>
+<code class="result">
+</code><code class="command">$ cd /tmp/myfirstrepo</code>
+<code class="result">
+</code><code class="command">$ echo "This is my first file." &gt; myfile.txt</code>
+<code class="result">
+</code><code class="command">$ git init</code>
+<code class="result">Initialized empty Git repository in /tmp/.git/
+
+</code><code class="command">$ ls .git # A look at what we've done.</code>
+<code class="result">branches  config  description  HEAD  
+hooks     info    objects      refs
+
+</code><code class="command">$ git commit -am 'Initial commit.'</code>
+<code class="result">master (root-commit) 5b4f9ff] Initial commit.
+1 file changed, 1 insertion(+)
+create mode 100644 myfile.txt
+</code></code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="01-intro/02-commit/1">
+<h1>File lifecycle.</h1>
+
+<p><img src="./file/01-intro/../images/file_lifecycle.png" alt="file lifecycle"/></p>
+
+<ol>
+<li>Untracked</li>
+<li>Tracked, unmodified</li>
+<li>Tracked, modified</li>
+<li>Staged</li>
+</ol>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="01-intro/02-commit/2">
+<h2>Staging, illustrated.</h2>
+
+<pre><code><code class="command">$ echo "This is my second file." &gt; myfile2.txt</code>
+<code class="result">
+</code><code class="command">$ git status # UNTRACKED</code>
+<code class="result">On branch master
+</code><code class="command"># Untracked files:</code>
+<code class="command"># (use "git add &lt;file&gt;..." to include in what will be committed)</code>
+<code class="command"># #       myfile2.txt</code>
+<code class="result">nothing added to commit but untracked files present (use "git add" to track)
+
+</code><code class="command">$ git add myfile.txt</code>
+<code class="result">
+</code><code class="command">$ git status  # STAGED</code>
+<code class="result">On branch master
+</code><code class="command"># Changes to be committed:</code>
+<code class="command"># (use "git reset HEAD &lt;file&gt;..." to unstage)</code>
+<code class="command"># #       new file:   myfile2.txt</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="01-intro/02-commit/3">
+<h2>Staging, illustrated.</h2>
+
+<pre><code><code class="command">$ echo "A change to this file." &gt;&gt; myfile2.txt # MODIFIED</code>
+<code class="result">
+</code><code class="command">$ git status # STAGED *and* MODIFIED</code>
+<code class="command"># On branch master</code>
+<code class="command"># Changes to be committed:</code>
+<code class="command"># (use "git reset HEAD &lt;file&gt;..." to unstage)</code>
+<code class="command"># #       new file:   myfile2.txt</code>
+<code class="command"># # Changes not staged for commit:</code>
+<code class="command"># (use "git add &lt;file&gt;..." to update what will be committed)</code>
+<code class="command"># (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)</code>
+<code class="command"># #       modified:   myfile2.txt</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="01-intro/02-commit/4">
+<h2>Staging, illustrated.</h2>
+
+<pre><code><code class="command">$ git diff</code>
+<code class="result">diff --git a/myfile2.txt b/myfile2.txt
+index d237c5c..be14d23 100644
+--- a/myfile2.txt
++++ b/myfile2.txt
+@@ -1 +1,2 @@
+ This is my second file
+ +A change to my file.
+
+</code><code class="command">$ git diff --cached</code>
+<code class="result">diff --git a/myfile2.txt b/myfile2.txt
+new file mode 100644
+index 0000000..d237c5c
+--- /dev/null
++++ b/myfile2.txt
+@@ -0,0 +1 @@
++This is my second file
+</code></code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="01-intro/02-commit/5">
+<h2>Staging, illustrated.</h2>
+
+<pre><code><code class="command">$ git commit -m "Any guess what gets committed here?"</code>
+<code class="result">[master 21e4239] Any guess what gets committed here?
+ 1 file changed, 1 insertion(+)
+  create mode 100644 myfile2.txt
+
+</code><code class="command">$ git status</code>
+<code class="result">On branch master
+</code><code class="command"># Changes not staged for commit:</code>
+<code class="command"># (use "git add &lt;file&gt;..." to update what will be committed)</code>
+<code class="command"># (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)</code>
+<code class="command"># #       modified:   myfile2.txt</code>
+<code class="command"># no changes added to commit (use "git add" and/or "git commit -a")</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="01-intro/02-commit/6">
+<h2>Undo!</h2>
+
+<pre><code><code class="command"># Amending commits</code>
+<code class="command">$ echo "Forgot this file!" &gt; forgot.txt</code>
+<code class="command">$ git add forgot.txt</code>
+<code class="command">$ git commit --amend</code>
+<code class="result">
+
+</code><code class="command"># Undoing uncommitted changes</code>
+<code class="command">$ echo "Don't really need this line." &gt; myfile.txt</code>
+<code class="command">$ git add myfile.txt</code>
+<code class="command">$ git reset HEAD myfile.txt  # Unstage</code>
+<code class="command">$ git myfile.txt             # delete change.</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="01-intro/02-commit/7">
+<h1>You just learned...</h1>
+
+<ul>
+<li>...how to add new files to the repository.</li>
+<li>...how to stage and commit new changes.</li>
+<li>...how to check the status of your current changes.</li>
+<li>...how to undo changes to files and amend commts.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02-github/slidesA/1">
+<p class="notes">first slide</p>
+
+<h1>Github / Remotes</h1>
+
+<p><img src="./file/02-github/../images/codercat.jpg" alt="codercat"/></p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="02-github/slidesA/2">
+<h1>Remotes</h1>
+
+<pre><code>* Link your repo to the cloud.
+* Provide an interface for sharing with others.
+* Github provides free public repo hosting!
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/3">
+<h2>Creating a github repo</h2>
+
+<pre><code><code class="command">$ git remote add origin git@github.com:johnmcdonnell/demo.git</code>
+<code class="command">$ git push -u origin master</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/4">
+<h2>Cloning a github repo</h2>
+
+<pre><code><code class="command">$ cd /tmp</code>
+<code class="command">$ git clone git@github.com:johnmcdonnell/demo.git myclone</code>
+<code class="result">Cloning into 'myclone'...
+remote: Counting objects: 9, done.
+remote: Compressing objects: 100% (4/4), done.
+Receiving objects: 100% (9/9), done.
+remote: Total 9 (delta 0), reused 9 (delta 0)
+</code></code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/5">
+<h2>Making changes and sending them back.</h2>
+
+<pre><code><code class="command">$ cd /myclone</code>
+<code class="command">$ echo "Changes to our file, in the clone." &gt; myfile.txt</code>
+<code class="result">[master 1d5dd39] Changes in the clone.
+ 1 file changed, 1 insertion(+)
+
+</code><code class="command">$ git commit -a -m "Remote changes made."</code>
+<code class="command">$ git push origin master</code>
+<code class="result">Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 350 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:johnmcdonnell/demo.git
+   21e4239..1d5dd39  master -&gt; master
+</code></code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/6">
+<h2>Getting our changes, with a twist.</h2>
+
+<pre><code><code class="command">$ cd ../myrepo</code>
+<code class="command">$ echo "Changes to our file, in our own repo." &gt;&gt; myfile.txt</code>
+<code class="command">$ git commit -a -m "Local changes made."</code>
+<code class="result">[master 672b384] Local changes made.
+ 1 file changed, 1 insertion(+)
+
+</code><code class="command">$ git fetch origin master</code>
+<code class="result">remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From github.com:johnmcdonnell/demo
+ * branch            master     -&gt; FETCH_HEAD
+
+</code><code class="command">$ git status</code>
+<code class="command"># On branch master</code>
+<code class="command"># Your branch is ahead of 'origin/master' by 1 commit.</code>
+<code class="command"># nothing to commit (working directory clean)</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/7">
+<h2>Getting our changes, with a twist.</h2>
+
+<pre><code><code class="command">$ git pull origin master</code>
+<code class="result">From github.com:johnmcdonnell/demo
+ * branch            master     -&gt; FETCH_HEAD
+   Auto-merging myfile.txt
+   CONFLICT (content): Merge conflict in myfile.txt
+   Automatic merge failed; fix conflicts and then commit the result.
+
+</code><code class="command">$ $EDITOR myfile.txt # fix the conflict.</code>
+<code class="result">
+</code><code class="command">$ git status</code>
+<code class="command"># On branch master</code>
+<code class="command"># Your branch is ahead of 'origin/master' by 2 commits.</code>
+<code class="command"># nothing to commit (working directory clean)</code>
+<code class="result">
+</code><code class="command">$ git commit</code>
+<code class="command">$ git push origin master</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="02-github/slidesA/8">
+<h1>You just learned...</h1>
+
+<ul>
+<li>...how to create a new repository in github.</li>
+<li>...how to clone remote repos and push changes to them.</li>
+<li>...how to deal with merge conflicts.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content title-slide" ref="03-branching/slidesA/1">
+<p class="notes">first slide</p>
+
+<h1>Branches</h1>
+
+<p><img src="./file/03-branching/../images/branch.jpg" alt="treebranch"/></p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="03-branching/slidesA/2">
+<p class="notes">These are some notes.</p>
+
+<h1>What is a branch?</h1>
+
+<ul>
+<li>A branch is really just a seperate version of your code.</li>
+<li>E.g., A 'pretty' version of your paper, vs. one you're overhauling.</li>
+<li>In technical terms, it is a pointer to a commit.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/3">
+<h1>What is a commit, really?</h1>
+
+<p><img src="./file/03-branching/../images/commit_anatomy.png" alt="Commit Anatomy"/></p></div>
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/4">
+<h1>Git as collection of commits</h1>
+
+<p><img src="./file/03-branching/../images/threecommits.png" alt="Three commits"/></p></div>
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/5">
+<h1>A branch is a pointer to a commit.</h1>
+
+<p><img src="./file/03-branching/../images/masterbranch.png" alt="Master branch"/></p></div>
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/6">
+<h1>A commit can be two branches.</h1>
+
+<p><img src="./file/03-branching/../images/newbranch.png" alt="New branch"/></p>
+
+<p><code>git branch testing</code></p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/7">
+<h1>The files in our WD reflect HEAD</h1>
+
+<p><img src="./file/03-branching/../images/HEAD.png" alt="HEAD"/></p>
+
+<p>HEAD points to master. Master points to the snapshot "f30ab".</p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/8">
+<h1>Move HEAD with checkout</h1>
+
+<p><img src="./file/03-branching/../images/HEAD_testing.png" alt="HEAD"/></p>
+
+<p><code>git checkout testing</code></p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/9">
+<h1>New commits move the HEAD branch</h1>
+
+<p><img src="./file/03-branching/../images/branchcommit.png" alt="Branch Commit"/></p>
+
+<p><code>git commit...</code></p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/10">
+<h1>A merge scenario</h1>
+
+<p><img src="./file/03-branching/../images/mergescenario.png" alt="Merge Scenario"/></p>
+
+<p><code>git checkout master</code><br/>
+<code>git commit...</code></p></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/11">
+<h1>A merge scenario</h1>
+
+<p><img src="./file/03-branching/../images/mergeaftermath.png" alt="Merge Aftermath"/></p>
+
+<p><code>git merge iss53</code></p></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/slidesA/12">
+<h1>Making branches and tags</h1>
+
+<pre><code><code class="command">$ git tag -a pilot -m "Our initial pilot experiment"</code>
+<code class="result">
+</code><code class="command">$ git branch exp1</code>
+<code class="command">$ git branch exp2</code>
+<code class="result">
+</code><code class="command">$ git checkout exp1</code>
+<code class="command">$ echo "Exp 1 makes manipulation A" &gt;&gt; myfile.txt</code>
+<code class="command">$ git commit -a -m "Added manipulation A"</code>
+<code class="result">
+</code><code class="command">$ git checkout exp2</code>
+<code class="command">$ echo "Exp 2 makes manipulation B" &gt;&gt; myfile.txt</code>
+<code class="command">$ git commit -a -m "Added manipulation B"</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/slidesA/13">
+<h1>Merging</h1>
+
+<pre><code><code class="command">$ git checkout master</code>
+<code class="command">$ $EDITOR myfile.txt  # Make an important bugfix</code>
+<code class="command">$ git commit -a -m "Important bugfix"</code>
+<code class="result">
+</code><code class="command">$ git checkout exp1</code>
+<code class="command">$ git merge master</code>
+<code class="result">
+</code><code class="command">$ git checkout exp2</code>
+<code class="command">$ git merge master</code>
+<code class="command">$ git diff master</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/slidesA/14">
+<h1>Using tags</h1>
+
+<pre><code><code class="command">$ git show pilot</code>
+<code class="command">$ git checkout pilot</code>
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="03-branching/slidesA/15">
+<h1>You just learned...</h1>
+
+<ul>
+<li>What tags and branches are.</li>
+<li>How to make one.</li>
+<li>How to merge changes from one branch onto another branch.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="04-signoff/slidesA/1">
+<p class="notes">These are some notes.</p>
+
+<h1>Conclusion</h1>
+
+<ul>
+<li>Git helps keep every past and present version of your code safe.</li>
+<li>Git makes it easy to collaborate with others.</li>
+<li>Git's branching and tagging keep your code organized.</li>
+<li/>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="04-signoff/slidesA/2">
+<ul>
+<li>Configuration
+
+<ul>
+<li>Turn on color<br/>
+    <code>git config --global color.ui "auto"</code></li>
+<li>Your signature<br/>
+    <code>git config --global user.name "Your Name"</code><br/>
+    <code>git config --global user.email "your.email@nyu.edu"</code></li>
+<li>Your editor<br/>
+    <code>git config --global core.editor "mate -w"</code></li>
+<li>Password caching for https
+    <code>git config --global credential.helper cache</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="04-signoff/slidesA/3">
+<ul>
+<li>Resources
+
+<ul>
+<li>ProGit book<br/>
+    <code>http://progit.org</code></li>
+<li>Understanding git conceptually<br/>
+    <code>http://www.sbf5.com/~cduan/technical/git/</code></li>
+<li>Github help<br/>
+    <code>https://help.github.com/</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+
+</body>
+</html>
