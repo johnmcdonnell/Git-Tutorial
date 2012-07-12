@@ -1,4 +1,4 @@
-<!SLIDE subsection>
+<!SLIDE subsection bigimage>
 .notes first slide
 
 # Github / Remotes
@@ -57,24 +57,7 @@
     $ git commit -a -m "Local changes made."
     [master 672b384] Local changes made.
      1 file changed, 1 insertion(+)
-
-    $ git fetch origin master
-    remote: Counting objects: 5, done.
-    remote: Compressing objects: 100% (3/3), done.
-    remote: Total 3 (delta 0), reused 3 (delta 0)
-    Unpacking objects: 100% (3/3), done.
-    From github.com:johnmcdonnell/demo
-     * branch            master     -> FETCH_HEAD
-
-    $ git status
-    # On branch master
-    # Your branch is ahead of 'origin/master' by 1 commit.
-    #
-    nothing to commit (working directory clean)
-
-!SLIDE commandline
-## Getting our changes, with a twist.
-
+    
     $ git pull origin master
     From github.com:johnmcdonnell/demo
      * branch            master     -> FETCH_HEAD

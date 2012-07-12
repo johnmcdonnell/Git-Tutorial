@@ -21,7 +21,7 @@
 ![Commit Anatomy](../images/commit_anatomy.png)
 
 <!SLIDE bigimage>
-# Git as collection of commits
+# Repo as collection of commits
 ![Three commits](../images/threecommits.png)
 
 <!SLIDE bigimage>
@@ -29,13 +29,13 @@
 ![Master branch](../images/masterbranch.png)
 
 <!SLIDE bigimage>
-# A commit can be two branches.
+# Two branches can point to the same commit.
 ![New branch](../images/newbranch.png)
 
 `git branch testing`
 
 <!SLIDE bullets>
-# The files in our WD reflect HEAD
+# The files in our working directory reflect HEAD
 ![HEAD](../images/HEAD.png)
 
 HEAD points to master. Master points to the snapshot "f30ab".

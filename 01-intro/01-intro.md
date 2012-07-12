@@ -12,7 +12,7 @@ July 12, 2012
 !SLIDE bullets incremental
 .notes These are some notes.
 
-# Why do I care about git?
+# Why use git?
 
 1. Backups
 1. Collaboration
