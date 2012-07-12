@@ -7,7 +7,7 @@
 * Git helps keep every past and present version of your code safe.
 * Git makes it easy to collaborate with others.
 * Git's branching and tagging keep your code organized.
-* 
+ 
 <!SLIDE bullets>
 * Configuration
   * Turn on color  
@@ -17,7 +17,7 @@
         `git config --global user.email "your.email@nyu.edu"`
   * Your editor  
         `git config --global core.editor "mate -w"`  
-  * Password caching for https
+  * Password caching for https  
         `git config --global credential.helper cache`
 
 <!SLIDE bullets>
