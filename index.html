@@ -89,7 +89,7 @@ July 12, 2012</p></div>
 </div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="01-intro/01-intro/2">
 <p class="notes">These are some notes.</p>
 
-<h1>Why do I care about git?</h1>
+<h1>Why use git?</h1>
 
 <ol>
 <li>Backups</li>
@@ -244,26 +244,26 @@ index 0000000..d237c5c
 <li>...how to undo changes to files and amend commts.</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content subsection" ref="02-github/slidesA/1">
+</div><div class="slide" data-transition="none"><div class="content subsection bigimage" ref="02-github/collaboration/1">
 <p class="notes">first slide</p>
 
 <h1>Github / Remotes</h1>
 
 <p><img src="./file/02-github/../images/codercat.jpg" alt="codercat"/></p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="02-github/slidesA/2">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="02-github/collaboration/2">
 <h1>Remotes</h1>
 
 <pre><code>* Link your repo to the cloud.
 * Provide an interface for sharing with others.
 * Github provides free public repo hosting!
 </code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/3">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/collaboration/3">
 <h2>Creating a github repo</h2>
 
 <pre><code><code class="command">$ git remote add origin git@github.com:johnmcdonnell/demo.git</code>
 <code class="command">$ git push -u origin master</code>
 </code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/4">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/collaboration/4">
 <h2>Cloning a github repo</h2>
 
 <pre><code><code class="command">$ cd /tmp</code>
@@ -274,7 +274,7 @@ remote: Compressing objects: 100% (4/4), done.
 Receiving objects: 100% (9/9), done.
 remote: Total 9 (delta 0), reused 9 (delta 0)
 </code></code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/5">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/collaboration/5">
 <h2>Making changes and sending them back.</h2>
 
 <pre><code><code class="command">$ cd /myclone</code>
@@ -292,7 +292,7 @@ Total 3 (delta 0), reused 0 (delta 0)
 To git@github.com:johnmcdonnell/demo.git
    21e4239..1d5dd39  master -&gt; master
 </code></code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/6">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/collaboration/6">
 <h2>Getting our changes, with a twist.</h2>
 
 <pre><code><code class="command">$ cd ../myrepo</code>
@@ -301,23 +301,7 @@ To git@github.com:johnmcdonnell/demo.git
 <code class="result">[master 672b384] Local changes made.
  1 file changed, 1 insertion(+)
 
-</code><code class="command">$ git fetch origin master</code>
-<code class="result">remote: Counting objects: 5, done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 3 (delta 0)
-Unpacking objects: 100% (3/3), done.
-From github.com:johnmcdonnell/demo
- * branch            master     -&gt; FETCH_HEAD
-
-</code><code class="command">$ git status</code>
-<code class="command"># On branch master</code>
-<code class="command"># Your branch is ahead of 'origin/master' by 1 commit.</code>
-<code class="command"># nothing to commit (working directory clean)</code>
-</code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="02-github/slidesA/7">
-<h2>Getting our changes, with a twist.</h2>
-
-<pre><code><code class="command">$ git pull origin master</code>
+</code><code class="command">$ git pull origin master</code>
 <code class="result">From github.com:johnmcdonnell/demo
  * branch            master     -&gt; FETCH_HEAD
    Auto-merging myfile.txt
@@ -334,7 +318,7 @@ From github.com:johnmcdonnell/demo
 </code><code class="command">$ git commit</code>
 <code class="command">$ git push origin master</code>
 </code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="02-github/slidesA/8">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="02-github/collaboration/7">
 <h1>You just learned...</h1>
 
 <ul>
@@ -343,13 +327,13 @@ From github.com:johnmcdonnell/demo
 <li>...how to deal with merge conflicts.</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content title-slide" ref="03-branching/slidesA/1">
+</div><div class="slide" data-transition="none"><div class="content title-slide" ref="03-branching/branching/1">
 <p class="notes">first slide</p>
 
 <h1>Branches</h1>
 
 <p><img src="./file/03-branching/../images/branch.jpg" alt="treebranch"/></p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="03-branching/slidesA/2">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="03-branching/branching/2">
 <p class="notes">These are some notes.</p>
 
 <h1>What is a branch?</h1>
@@ -360,56 +344,56 @@ From github.com:johnmcdonnell/demo
 <li>In technical terms, it is a pointer to a commit.</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/3">
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/branching/3">
 <h1>What is a commit, really?</h1>
 
 <p><img src="./file/03-branching/../images/commit_anatomy.png" alt="Commit Anatomy"/></p></div>
-</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/4">
-<h1>Git as collection of commits</h1>
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/branching/4">
+<h1>Repo as collection of commits</h1>
 
 <p><img src="./file/03-branching/../images/threecommits.png" alt="Three commits"/></p></div>
-</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/5">
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/branching/5">
 <h1>A branch is a pointer to a commit.</h1>
 
 <p><img src="./file/03-branching/../images/masterbranch.png" alt="Master branch"/></p></div>
-</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/slidesA/6">
-<h1>A commit can be two branches.</h1>
+</div><div class="slide" data-transition="none"><div class="content bigimage" ref="03-branching/branching/6">
+<h1>Two branches can point to the same commit.</h1>
 
 <p><img src="./file/03-branching/../images/newbranch.png" alt="New branch"/></p>
 
 <p><code>git branch testing</code></p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/7">
-<h1>The files in our WD reflect HEAD</h1>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/branching/7">
+<h1>The files in our working directory reflect HEAD</h1>
 
 <p><img src="./file/03-branching/../images/HEAD.png" alt="HEAD"/></p>
 
 <p>HEAD points to master. Master points to the snapshot "f30ab".</p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/8">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/branching/8">
 <h1>Move HEAD with checkout</h1>
 
 <p><img src="./file/03-branching/../images/HEAD_testing.png" alt="HEAD"/></p>
 
 <p><code>git checkout testing</code></p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/9">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/branching/9">
 <h1>New commits move the HEAD branch</h1>
 
 <p><img src="./file/03-branching/../images/branchcommit.png" alt="Branch Commit"/></p>
 
 <p><code>git commit...</code></p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/10">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/branching/10">
 <h1>A merge scenario</h1>
 
 <p><img src="./file/03-branching/../images/mergescenario.png" alt="Merge Scenario"/></p>
 
 <p><code>git checkout master</code><br/>
 <code>git commit...</code></p></div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/slidesA/11">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="03-branching/branching/11">
 <h1>A merge scenario</h1>
 
 <p><img src="./file/03-branching/../images/mergeaftermath.png" alt="Merge Aftermath"/></p>
 
 <p><code>git merge iss53</code></p></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/slidesA/12">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/branching/12">
 <h1>Making branches and tags</h1>
 
 <pre><code><code class="command">$ git tag -a pilot -m "Our initial pilot experiment"</code>
@@ -425,7 +409,7 @@ From github.com:johnmcdonnell/demo
 <code class="command">$ echo "Exp 2 makes manipulation B" &gt;&gt; myfile.txt</code>
 <code class="command">$ git commit -a -m "Added manipulation B"</code>
 </code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/slidesA/13">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/branching/13">
 <h1>Merging</h1>
 
 <pre><code><code class="command">$ git checkout master</code>
@@ -439,13 +423,13 @@ From github.com:johnmcdonnell/demo
 <code class="command">$ git merge master</code>
 <code class="command">$ git diff master</code>
 </code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/slidesA/14">
+</div><div class="slide" data-transition="none"><div class="content commandline" ref="03-branching/branching/14">
 <h1>Using tags</h1>
 
 <pre><code><code class="command">$ git show pilot</code>
 <code class="command">$ git checkout pilot</code>
 </code></pre></div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="03-branching/slidesA/15">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="03-branching/branching/15">
 <h1>You just learned...</h1>
 
 <ul>
@@ -454,7 +438,7 @@ From github.com:johnmcdonnell/demo
 <li>How to merge changes from one branch onto another branch.</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="04-signoff/slidesA/1">
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="04-signoff/conclusion/1">
 <p class="notes">These are some notes.</p>
 
 <h1>Conclusion</h1>
@@ -466,7 +450,7 @@ From github.com:johnmcdonnell/demo
 <li/>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="04-signoff/slidesA/2">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="04-signoff/conclusion/2">
 <ul>
 <li>Configuration
 
@@ -484,7 +468,7 @@ From github.com:johnmcdonnell/demo
 </li>
 </ul>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets" ref="04-signoff/slidesA/3">
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="04-signoff/conclusion/3">
 <ul>
 <li>Resources
 
