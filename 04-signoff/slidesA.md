@@ -23,8 +23,9 @@
 <!SLIDE bullets>
 * Resources
   * ProGit book  
-        `http://progit.org`
+        [progit.org](http://progit.org)
   * Understanding git conceptually  
-        `http://www.sbf5.com/~cduan/technical/git/`
+        [http://www.sbf5.com/~cduan/technical/git/](http://www.sbf5.com/~cduan/technical/git/)
   * Github help  
-        `https://help.github.com/`
+        [help.github.com](https://help.github.com/)
+        
