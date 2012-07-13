@@ -1,6 +1,5 @@
 
 <!SLIDE bullets incremental>
-.notes These are some notes.
 
 # Conclusion
 

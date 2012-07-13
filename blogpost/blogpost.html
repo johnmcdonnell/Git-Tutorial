@@ -1,0 +1,305 @@
+<h1>Git for Scientists</h1>
+<p><img alt="octocat" src="../images/octocat.png" /></p>
+<p>Presented by John McDonnell<br />
+July 12, 2012</p>
+<h1>Why use git?</h1>
+<ol>
+<li>Backups</li>
+<li>Collaboration</li>
+<li>Organization</li>
+</ol>
+<h1>What is git?</h1>
+<ul>
+<li>Git is a version control system. </li>
+</ul>
+<h1>What is git?</h1>
+<p><img alt="threecommits" src="../images/threecommits.png" /></p>
+<ul>
+<li>It stores snapshots of your projects.</li>
+<li>...It also stores the relationships between those snapshots.</li>
+</ul>
+<h1>Let's try.</h1>
+<pre><code>$ mkdir /tmp/myfirstrepo
+
+$ cd /tmp/myfirstrepo
+
+$ echo "This is my first file." &gt; myfile.txt
+
+$ git init
+Initialized empty Git repository in /tmp/.git/
+
+$ ls .git # A look at what we've done.
+branches  config  description  HEAD  
+hooks     info    objects      refs
+
+$ git commit -am 'Initial commit.'
+master (root-commit) 5b4f9ff] Initial commit.
+1 file changed, 1 insertion(+)
+create mode 100644 myfile.txt
+</code></pre>
+<h1>File lifecycle.</h1>
+<p><img alt="file lifecycle" src="../images/file_lifecycle.png" /></p>
+<ol>
+<li>Untracked</li>
+<li>Tracked, unmodified</li>
+<li>Tracked, modified</li>
+<li>Staged</li>
+</ol>
+<h2>Staging, illustrated.</h2>
+<pre><code>$ echo "This is my second file." &gt; myfile2.txt
+
+$ git status # UNTRACKED
+On branch master
+# Untracked files:
+#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#       myfile2.txt
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ git add myfile.txt
+
+$ git status  # STAGED
+On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       new file:   myfile2.txt
+</code></pre>
+<h2>Staging, illustrated.</h2>
+<pre><code>$ echo "A change to this file." &gt;&gt; myfile2.txt # MODIFIED
+
+$ git status # STAGED *and* MODIFIED
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       new file:   myfile2.txt
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#       modified:   myfile2.txt
+</code></pre>
+<h2>Staging, illustrated.</h2>
+<pre><code>$ git diff
+diff --git a/myfile2.txt b/myfile2.txt
+index d237c5c..be14d23 100644
+--- a/myfile2.txt
++++ b/myfile2.txt
+@@ -1 +1,2 @@
+ This is my second file
+ +A change to my file.
+
+$ git diff --cached
+diff --git a/myfile2.txt b/myfile2.txt
+new file mode 100644
+index 0000000..d237c5c
+--- /dev/null
++++ b/myfile2.txt
+@@ -0,0 +1 @@
++This is my second file
+</code></pre>
+<h2>Staging, illustrated.</h2>
+<pre><code>$ git commit -m "Any guess what gets committed here?"
+[master 21e4239] Any guess what gets committed here?
+ 1 file changed, 1 insertion(+)
+  create mode 100644 myfile2.txt
+
+$ git status
+On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#       modified:   myfile2.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre>
+<h2>Undo!</h2>
+<pre><code># Amending commits
+$ echo "Forgot this file!" &gt; forgot.txt
+$ git add forgot.txt
+$ git commit --amend
+
+# Undoing uncommitted changes
+$ echo "Don't really need this line." &gt; myfile.txt
+$ git add myfile.txt
+$ git reset HEAD myfile.txt  # Unstage
+$ git myfile.txt             # delete change.
+</code></pre>
+<h1>You just learned...</h1>
+<ul>
+<li>...how to add new files to the repository.</li>
+<li>...how to stage and commit new changes.</li>
+<li>...how to check the status of your current changes.</li>
+<li>...how to undo changes to files and amend commts.</li>
+</ul>
+<h1>Github / Remotes</h1>
+<p><img alt="codercat" src="../images/codercat.jpg" /></p>
+<h1>Remotes</h1>
+<pre><code>* Link your repo to the cloud.
+* Provide an interface for sharing with others.
+* Github provides free public repo hosting!
+</code></pre>
+<h2>Creating a github repo</h2>
+<pre><code>$ git remote add origin git@github.com:johnmcdonnell/demo.git
+$ git push -u origin master
+</code></pre>
+<h2>Cloning a github repo</h2>
+<pre><code>$ cd /tmp
+$ git clone git@github.com:johnmcdonnell/demo.git myclone
+Cloning into 'myclone'...
+remote: Counting objects: 9, done.
+remote: Compressing objects: 100% (4/4), done.
+Receiving objects: 100% (9/9), done.
+remote: Total 9 (delta 0), reused 9 (delta 0)
+</code></pre>
+<h2>Making changes and sending them back.</h2>
+<pre><code>$ cd /myclone
+$ echo "Changes to our file, in the clone." &gt;&gt; myfile.txt
+[master 1d5dd39] Changes in the clone.
+ 1 file changed, 1 insertion(+)
+
+$ git commit -a -m "Remote changes made."
+$ git push origin master
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 350 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:johnmcdonnell/demo.git
+   21e4239..1d5dd39  master -&gt; master
+</code></pre>
+<h2>Getting our changes, with a twist.</h2>
+<pre><code>$ cd ../myrepo
+$ echo "Changes to our file, in our own repo." &gt;&gt; myfile.txt
+$ git commit -a -m "Local changes made."
+[master 672b384] Local changes made.
+ 1 file changed, 1 insertion(+)
+
+$ git pull origin master
+From github.com:johnmcdonnell/demo
+ * branch            master     -&gt; FETCH_HEAD
+   Auto-merging myfile.txt
+   CONFLICT (content): Merge conflict in myfile.txt
+   Automatic merge failed; fix conflicts and then commit the result.
+
+$ $EDITOR myfile.txt # fix the conflict.
+
+$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#
+nothing to commit (working directory clean)
+
+$ git commit
+$ git push origin master
+</code></pre>
+<h1>You just learned...</h1>
+<ul>
+<li>...how to create a new repository in github.</li>
+<li>...how to clone remote repos and push changes to them.</li>
+<li>...how to deal with merge conflicts.</li>
+</ul>
+<h1>Branches</h1>
+<p><img alt="treebranch" src="../images/branch.jpg" /></p>
+<h1>What is a branch?</h1>
+<ul>
+<li>A branch is really just a seperate version of your code.</li>
+<li>E.g., A 'pretty' version of your paper, vs. one you're overhauling.</li>
+<li>In technical terms, it is a pointer to a commit.</li>
+</ul>
+<h1>What is a commit, really?</h1>
+<p><img alt="Commit Anatomy" src="../images/commit_anatomy.png" /></p>
+<h1>Repo as collection of commits</h1>
+<p><img alt="Three commits" src="../images/threecommits.png" /></p>
+<h1>A branch is a pointer to a commit.</h1>
+<p><img alt="Master branch" src="../images/masterbranch.png" /></p>
+<h1>Two branches can point to the same commit.</h1>
+<p><img alt="New branch" src="../images/newbranch.png" /></p>
+<p><code>git branch testing</code></p>
+<h1>The files in our working directory reflect HEAD</h1>
+<p><img alt="HEAD" src="../images/HEAD.png" /></p>
+<p>HEAD points to master. Master points to the snapshot "f30ab".</p>
+<h1>Move HEAD with checkout</h1>
+<p><img alt="HEAD" src="../images/HEAD_testing.png" /></p>
+<p><code>git checkout testing</code></p>
+<h1>New commits move the HEAD branch</h1>
+<p><img alt="Branch Commit" src="../images/branchcommit.png" /></p>
+<p><code>git commit...</code></p>
+<h1>A merge scenario</h1>
+<p><img alt="Merge Scenario" src="../images/mergescenario.png" /></p>
+<p><code>git checkout master</code><br />
+<code>git commit...</code></p>
+<h1>A merge scenario</h1>
+<p><img alt="Merge Aftermath" src="../images/mergeaftermath.png" /></p>
+<p><code>git merge iss53</code></p>
+<h1>Making branches and tags</h1>
+<pre><code>$ git tag -a pilot -m "Our initial pilot experiment"
+
+$ git branch exp1
+$ git branch exp2
+
+$ git checkout exp1
+$ echo "Exp 1 makes manipulation A" &gt;&gt; myfile.txt
+$ git commit -a -m "Added manipulation A"
+
+$ git checkout exp2
+$ echo "Exp 2 makes manipulation B" &gt;&gt; myfile.txt
+$ git commit -a -m "Added manipulation B"
+</code></pre>
+<h1>Merging</h1>
+<pre><code>$ git checkout master
+$ $EDITOR myfile.txt  # Make an important bugfix
+$ git commit -a -m "Important bugfix"
+
+$ git checkout exp1
+$ git merge master
+
+$ git checkout exp2
+$ git merge master
+$ git diff master
+</code></pre>
+<h1>Using tags</h1>
+<pre><code>$git show pilot
+$git checkout pilot
+</code></pre>
+<h1>You just learned...</h1>
+<ul>
+<li>What tags and branches are.</li>
+<li>How to make one.</li>
+<li>How to merge changes from one branch onto another branch.</li>
+</ul>
+<h1>Conclusion</h1>
+<ul>
+<li>Git helps keep every past and present version of your code safe.</li>
+<li>Git makes it easy to collaborate with others.</li>
+<li>
+<p>Git's branching and tagging keep your code organized.</p>
+</li>
+<li>
+<p>Configuration</p>
+</li>
+<li>Turn on color<br />
+<code>git config --global color.ui "auto"</code></li>
+<li>Your signature<br />
+<code>git config --global user.name "Your Name"</code><br />
+<code>git config --global user.email "your.email@nyu.edu"</code></li>
+<li>Your editor<br />
+<code>git config --global core.editor "mate -w"</code><br />
+</li>
+<li>
+<p>Password caching for https<br />
+<code>git config --global credential.helper cache</code></p>
+</li>
+<li>
+<p>Resources</p>
+</li>
+<li>ProGit book<br />
+<a href="http://progit.org">progit.org</a></li>
+<li>Understanding git conceptually<br />
+<a href="http://www.sbf5.com/~cduan/technical/git/">http://www.sbf5.com/~cduan/technical/git/</a></li>
+<li>Github help<br />
+<a href="https://help.github.com/">help.github.com</a></li>
+</ul>

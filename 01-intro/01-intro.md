@@ -1,5 +1,4 @@
 <!SLIDE title-slide>
-.notes first slide
 
 # Git for Scientists  
 
@@ -10,7 +9,6 @@ July 12, 2012
 
 
 !SLIDE bullets incremental
-.notes These are some notes.
 
 # Why use git?
 

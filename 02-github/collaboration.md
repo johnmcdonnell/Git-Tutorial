@@ -1,5 +1,4 @@
 <!SLIDE subsection bigimage>
-.notes first slide
 
 # Github / Remotes
 

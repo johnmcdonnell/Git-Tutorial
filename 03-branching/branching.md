@@ -1,5 +1,4 @@
 <!SLIDE title-slide>
-.notes first slide
 
 # Branches
 
@@ -7,7 +6,6 @@
 
 
 <!SLIDE bullets incremental>
-.notes These are some notes.
 
 # What is a branch?
 
