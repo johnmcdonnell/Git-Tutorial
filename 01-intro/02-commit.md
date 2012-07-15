@@ -102,7 +102,7 @@
     $ echo "Don't really need this line." > myfile.txt
     $ git add myfile.txt
     $ git reset HEAD myfile.txt  # Unstage
-    $ git myfile.txt             # delete change.
+    $ git commit myfile.txt             # delete change.
 
 !SLIDE bullets incremental
 # You just learned...
