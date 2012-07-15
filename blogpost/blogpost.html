@@ -3,11 +3,15 @@
 <head>
     <title>Git for Scientists: A Tutorial</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/idea.min.css">
+    
+
     <style type="text/css">
         body {
-            width: 42em;
+            width: 45em;
             margin: 5% auto;
-	    font-size: .9em;
+	    font-size: 1em;
 	    line-height: 1em;
 	    font-family: "Open Sans", Helvetica, "Tex Gyre Heros", sans;
 	    text-align: justify;
@@ -37,9 +41,15 @@
         }
 	pre {
 	    margin-left: 2em;
+	    border: 1px solid #CCC;
 	}
+	code {
+	    font-size: 120%;
+	    line-height: 120%;
+	    background-color: #F8F8F8;
+        }
 	.intro {
-	    width: 27em;
+	    width: 30em;
 	}
     </style>
 </head>
@@ -91,53 +101,62 @@
     <li>...It also stores the relationships between those snapshots.</li>
     </ul>
     <h2>Let's try.</h2>
+    <p>Here, we set up a new git repo, add a file, and commit it to the repo.</p>
     <pre><code>
-    $ mkdir /tmp/myfirstrepo
-    $ cd /tmp/myfirstrepo
-    $ echo "This is my first file." &gt; myfile.txt
-    $ git init
-    $ ls .git # A look at what we've done.
-    $ git commit -am 'Initial commit.'
+    mkdir /tmp/myfirstrepo
+    cd /tmp/myfirstrepo
+    echo "This is my first file." &gt; myfile.txt
+    git init
+    ls .git # A look at what we've done.
+    git commit -am 'Initial commit.'
     </code></pre>
     <h2>File lifecycle.</h2>
-    <p><img alt="file lifecycle" src="images/file_lifecycle.png" /></p>
+    <img alt="file lifecycle" src="images/file_lifecycle.png" />
+    <p>Files go through the following stages as you work on your code:<p>
     <dl>
         <dt>Untracked</dd>
-        <dd> Git doesn't know about these files</dt>
+        <dd>Git doesn't know about these files</dt>
         <dt>Tracked, unmodified</dd> 
         <dd>Git knows about them, and there have been no changes.</dt>
         <dt>Tracked, modified</dd>
-        <dd> File is in git, but changes have been made that git doesn't know about.</dt>
+        <dd>File is in git, but changes have been made that git doesn't know about.</dt>
         <dt>Staged</dd>
         <dd>Changes to this file will be committed next time you commit.</dt>
     </dl>
     <h2>Staging, illustrated.</h2>
-    <pre><code>$ echo "This is my second file." &gt; myfile2.txt
-$ git status # UNTRACKED
-$ git add myfile.txt
-$ git status  # STAGED
-    </code></pre>
-    <pre><code>$ echo "A change to this file." &gt;&gt; myfile2.txt # MODIFIED
-$ git status # STAGED *and* MODIFIED
-    </code></pre>
-    <pre><code>$ git diff # Diff between unstaged vs staged changes
-$ git diff --cached # Diff between staged changes vs. commit
-    </code></pre>
-    <pre><code>$ git commit -m "Any guess what gets committed here?"
-$ git status
-    </code></pre>
+    <p>Let's go through an example of this staging business. Here we'll create
+    a new file. All files start out untracked. When we add it with "git add,"
+    it becomes staged, ready to be committed.<p>
+    <pre><code>echo "This is my second file." &gt; myfile2.txt
+git status # UNTRACKED
+git add myfile.txt
+git status  # STAGED </code></pre>
+    <p>If we modify the file, our new changes aren't staged yet.<p>
+    <pre><code>echo "A change to this file." &gt;&gt; myfile2.txt # MODIFIED
+git status # STAGED *and* MODIFIED </code></pre>
+    <pre><code>git diff # Diff between unstaged vs staged changes
+git diff --cached # Diff between staged changes vs. commit </code></pre>
+    <p>A commit at this point will commit the file as it was when we added it,
+    without the later changes.<p>
+    <pre><code>git commit -m "Any guess what gets committed here?"
+git status </code></pre>
     <h2>Undo!</h2>
-    <pre><code># Amending commits
-$ echo "Forgot this file!" &gt; forgot.txt
-$ git add forgot.txt
-$ git commit --amend
+    <p>Oops! We made a mistake there, by not adding our new changes into the
+    commit. Fortunately for us, git can rewrite history! If we commit those
+    changes with the "--amend" option, we're actually changing the last commit.
+    We can also change its commit message.</p>
+    <pre><code>echo "Forgot this file!" &gt; forgot.txt
+git add forgot.txt
+git commit --amend -m "Here's a replacement commit message." </pre></code>
 
-# Undoing uncommitted changes
-$ echo "Don't really need this line." &gt; myfile.txt
-$ git add myfile.txt
-$ git reset HEAD myfile.txt  # Unstage
-$ git myfile.txt             # delete change.
-    </code></pre>
+    <p>What if we accidentally stage something, we can unstage it with git
+    reset. If we have untracked changes to a file that we want to discard, we
+    can reset that file with git checkout. Bear in mind, you will lose those
+    changes forever if you do this!</p>
+    <pre><code>echo "Don't really need this line." &gt; myfile.txt
+git add myfile.txt
+git reset HEAD myfile.txt    # Unstage.
+git checkout myfile.txt      # Delete change.  </code></pre>
     <h2>You just learned...</h2>
     <ul>
     <li>...how to add new files to the repository.</li>
@@ -159,24 +178,21 @@ $ git myfile.txt             # delete change.
     <p>Just go to <a href="http://github.com">github's website</a>, make an
     account, and follow the instructions to create a new repo! Then in your
     practice repo, type out the following commands:
-    <pre><code>$ git remote add origin git@github.com:johnmcdonnell/demo.git
-$ git push -u origin master
-    </code></pre>
+    <pre><code>git remote add origin git@github.com:johnmcdonnell/demo.git
+git push -u origin master </code></pre>
     <h2>Cloning a github repo</h2>
     <p>This is the process you would go through to download the repository on a
     new computer.</p>
-    <pre><code>$ cd /tmp    # We're just using the '/tmp' directory to keep your computer clean.
-$ git clone git@github.com:johnmcdonnell/demo.git myclone
-    </code></pre>
+    <pre><code>cd /tmp  # Using the '/tmp' directory to keep your computer clean.
+git clone git@github.com:johnmcdonnell/demo.git myclone </code></pre>
     <h2>Making changes and sending them back.</h2>
     <p>Hopefully committing changes is old hat now. The 'push' command is what
     sends your data back to github.</p>
-    <pre><code>$ cd /myclone
-$ echo "Changes to our file, in the clone." &gt;&gt; myfile.txt
+    <pre><code>cd /myclone
+echo "Changes to our file, in the clone." &gt;&gt; myfile.txt
 
-$ git commit -a -m "Remote changes made."
-$ git push origin master
-    </code></pre>
+git commit -a -m "Remote changes made."
+git push origin master </code></pre>
     <h2>Getting our changes, with a twist.</h2>
     <p>Now we're going to make our own changes, before getting the changes
     someone else made from github. This will result in a conflict! No big deal,
@@ -184,17 +200,16 @@ $ git push origin master
     commit -a" just means, "automatically add everything I've made changes to.
     </p>
 
-    <pre><code>$ cd myrepo
-$ echo "Changes to our file, in our own repo." &gt;&gt; myfile.txt
-$ git commit -a -m "Local changes made."
+    <pre><code>cd myrepo
+echo "Changes to our file, in our own repo." &gt;&gt; myfile.txt
+git commit -a -m "Local changes made."
 
-$ git pull origin master
+git pull origin master
 
-$ $EDITOR myfile.txt # fix the conflict.
-$ git commit -a
+$EDITOR myfile.txt # fix the conflict.
+git commit -a
 
-$ git push origin master
-    </code></pre>
+git push origin master </code></pre>
     <h2>You just learned...</h2>
     <ul>
     <li>...how to create a new repository in github.</li>
@@ -261,44 +276,40 @@ git commit...</code></pre>
     based on that first experiment manipulating different variables.</p>
     <p>First we should tag our existing experiment so we can find it again
     later.</p>
-    <pre><code>$ git tag -a pilot -m "Our initial pilot experiment"
-    </code></pre>
+    <pre><code>git tag -a pilot -m "Our initial pilot experiment" </code></pre>
 
     <p>Then we make new branches, and add our new manipulations to each:</p>
-    <pre><code>$ git branch exp1
-$ git branch exp2
+    <pre><code>git branch exp1
+git branch exp2
 
-$ git checkout exp1
-$ echo "Exp 1 makes manipulation A" &gt;&gt; myfile.txt
-$ git commit -a -m "Added manipulation A"
+git checkout exp1
+echo "Exp 1 makes manipulation A" &gt;&gt; myfile.txt
+git commit -a -m "Added manipulation A"
 
-$ git checkout exp2
-$ echo "Exp 2 makes manipulation B" &gt;&gt; myfile.txt
-$ git commit -a -m "Added manipulation B"
-    </code></pre>
+git checkout exp2
+echo "Exp 2 makes manipulation B" &gt;&gt; myfile.txt
+git commit -a -m "Added manipulation B" </code></pre>
     <p>Now imagine we realize there's a bug in our code! With git, we can fix
     the bug just once, and apply it to both of our experiments. First we fix it
     in master:</p>
-    <pre><code>$ git checkout master
-$ $EDITOR myfile.txt  # Make an important bugfix
-$ git commit -a -m "Important bugfix"
-    </code></pre>
+    <pre><code>git checkout master
+$EDITOR myfile.txt  # Make an important bugfix
+git commit -a -m "Important bugfix" </code></pre>
 
     <p>...and then check out each of our new experiment branches and merge in
     the new changes in master: </p>
 
-    <pre><code>$ git checkout exp1
-$ git merge master
+    <pre><code>git checkout exp1
+git merge master
 
-$ git checkout exp2
-$ git merge master
-$ git diff master # here you can see the only difference now is our exp2 manipulation.
-    </code></pre>
+git checkout exp2
+git merge master
+git diff master # the only difference now is our exp2 manipulation.  </code></pre>
     <p>Maybe at this point we want to take a look at our pilot again and see if
     the bug caused problems there. Thanks to our tag, taking a second look at
     the pilot is easy:<p>
-    <pre><code>$ git show pilot       # if we just want to see the note.
-$ git checkout pilot   # to actually check out the snapshot.
+    <pre><code>git show pilot       # if we just want to see the note.
+git checkout pilot   # to actually check out the snapshot.
 </code></pre>
     <p>I hope this example lets researchers see how git can be useful for their
     own projects.
@@ -350,5 +361,12 @@ $ git checkout pilot   # to actually check out the snapshot.
 	<dd><code>git config --global credential.helper cache</code></dd>
         </li>
     </dl>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="scripts/jquery.js"><\/script>')</script>
+    <script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+    <script type="text/javascript">
+	$("code").addClass("bash");
+        hljs.initHighlightingOnLoad();
+    </script>
 </body>
 </html>
