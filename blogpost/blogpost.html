@@ -66,26 +66,36 @@
     <p><em>Octocat</em>, Github's mascot.</p>
     </div>
     <div class="intro">
-    <p>What follows is an adaptation of the slides I used to present a basic
-    tutorial on git to the <a href="http://nyuccl.org">NYUCCL</a>. The tutorial
-    is targeted at users who are new to version control systems, or just new to
-    git. I go over the basics of how to save and share your work in git, and
-    give a conceptual explanation of branching.</p> 
-    <p>More advanced users may be most interested in the section on
+    <dl>
+    <dt>What is this?</dt>
+    <dd>This is a tutorial is targeted at users who are new to version control
+    systems, or just new to git. It goes over the basics of how to save and
+    share your work in git, and give a conceptual explanation of branching.
+    This is an adaptation of the slides I used to present a basic tutorial on
+    git to the <a href="http://nyuccl.org">NYUCCL</a>. </dd> 
+    <dt>I'm a solo researcher, why would I use git?</dt>
+    <dd>The short answer is that it gives you a powerful toolkit to back up,
+    keep organized, and collaborate. There's a lively and informative
+    discussion of git's merits for researchers on 
+    <a href="http://stackoverflow.com/questions/2712421/r-and-version-control-for-the-solo-data-analyst">
+    Stack Overflow</a></dd>
+    <dt>Sounds pretty basic, do you go in depth at all?</dt>
+    <dd>More advanced users may be most interested in the section on
     <strong>branching</strong>, in which I explain how branching works
     conceptually and how it can help scientists manage their research projects.
-    </p> 
-    <p>It's best to follow along with the commands, so you can see how stuff
+    </dd> 
+    <dt>How should I use this tutorial?</dt>
+    <dd>It's best to follow along with the commands, so you can see how stuff
     works in practice. I've also made them available in <a
     href="tutorial.sh">this script</a>. You'll need to <strong>install
     git</strong> on your system, so check
     <a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">
     here</a> for instructions. 
-    The commands here will work on Macs and Linux without modification. Windows
+    (<strong>Update</strong>: Or follow along online, using <a
+    href="http://try.github.com/levels/1/challenges/1">tryGit</a>!) The
+    commands here will work on Macs and Linux without modification. Windows
     doesn't have a "/tmp" directory, so just use a different directory if
-    you're on Windows.</p>
-    <p>Update: <strong>Or follow along online</strong>, using <a
-    href="http://try.github.com/levels/1/challenges/1">tryGit</a>!</p>
+    you're on Windows.</dt>
     </div>
     <h2>Table of Contents</h2>
     <ul>
@@ -97,16 +107,16 @@
     <a name="intro"> <h1>An Introduction</h1></a>
     <h2>Why use git?</h2>
     <ol>
-    <li>Backups</li>
-    <li>Collaboration</li>
-    <li>Organization</li>
+        <li>Backups</li>
+        <li>Collaboration</li>
+        <li>Organization</li>
     </ol>
     <h2>What is git?</h2>
     <p><img alt="threecommits" src="images/threecommits.png" /></p>
     <ul>
-    <li>Git is a version control system. </li>
-    <li>It stores snapshots of your projects.</li>
-    <li>...It also stores the relationships between those snapshots.</li>
+        <li>Git is a version control system. </li>
+        <li>It stores snapshots of your projects.</li>
+        <li>...It also stores the relationships between those snapshots.</li>
     </ul>
     <h2>Let's try.</h2>
     <p>Here, we set up a new git repo, add a file, and commit it to the repo.</p>
@@ -350,7 +360,7 @@ git checkout pilot   # to actually check out the snapshot.
         augment the git command line experience. </li>
         <li><a href="https://github.com/patthoyts/gitk">gitk</a>, a similar program for linux.</li>
         <li><a href="http://www.git-tower.com/">Tower</a>, a powerful (non-free) git client for OSX.</li>
-        <li><a href="http://www.sourcetreeapp.com/">SourceTree</a>, another non-free git client for OSX.</li>
+        <li><a href="http://www.sourcetreeapp.com/">SourceTree</a>, another git client for OSX, free with registration.</li>
         <li><a href="http://www.rstudio.org/">RStudio</a>, an excellent
         graphical program for using R which incorporates git support.</li>
     </ul>
